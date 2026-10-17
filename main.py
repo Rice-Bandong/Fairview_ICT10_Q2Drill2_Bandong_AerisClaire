@@ -1,5 +1,6 @@
-from pyscript import document, display
+from pyscript import document
 
+# Grade level sets 
 grade8 = {'Jordin San Juan', 'Elina Elysse Padre', 'Savanah Fugueroa'}
 grade9 = {'Franshellyahna Pilao', 'Kyrie Cerise Funtanilla', 'Antoinette Caleigh Garcia', 'Julianna Omaking'}
 grade10 = {'Aeris Bandong', 'Vyelle Mikayla Bunag', 'Gavin Ghonn Taguiga', 'Hans Arada'}
@@ -7,15 +8,21 @@ grade11 = {'Alexi Villanueva', 'Dannielle Luna Dimasuhid', 'Ebtisam A. Al Hazmi'
 grade12 = {'Maia Isabelle Fabro', 'Erin Mandapat', 'Maria Elisha Padre', 'Nica Gabriela Crispino'}
 
 def add_member(event):
-    
-    first_name = document.getElementById('fname').value.strip().upper()
-    last_name = document.getElementById('lname').value.strip().upper()
+    # Get input 
+    first_name = document.getElementById('fname').value.strip()
+    last_name = document.getElementById('lname').value.strip()
    
-    new_member_set = {f"{first_name} {last_name}"}
+    # Create new member set
+    new_member = {f"{first_name} {last_name}"}
     
-    all_members_set = grade8 | grade9 | grade10 | grade11 | grade12 | new_member_set
+    # Combine all sets using union
+    all_members = grade8 | grade9 | grade10 | grade11 | grade12 | new_member
     
-    members_text = "\n".join(sorted(all_members_set))
-    total_count = len(all_members_set)
+    # Sort and join with line breaks
+    members_list = "<br>".join(sorted(all_members))
     
-    display(f"ALL MEMBERS:\n{members_text}\n\nTOTAL MEMBERS: {total_count}", target="output1", append=False)
+    # Get total count
+    total_members = len(all_members)
+    
+    # Show results on the webpage
+    document.getElementById('output1').innerHTML = f"ALL MEMBERS:<br>{members_list}<br><br>TOTAL MEMBERS: {total_members}"
